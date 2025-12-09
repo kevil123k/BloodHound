@@ -1,6 +1,6 @@
 # 🩸 BloodHound
 
-<img src="https://raw.githubusercontent.com/kevil123k/BloodHound/refs/heads/main/dashboard/Picsart_25-12-10_02-55-39-941.jpg" alt="BloodHound Terminal" width="600">
+<img src="https://raw.githubusercontent.com/kevil123k/BloodHound/refs/heads/main/dashboard/Picsart_25-12-10_02-55-39-941.jpg?token=GHSAT0AAAAAADQ65XQC7O566GIKLQ76J7OG2JYSYVA" alt="BloodHound Terminal" width="600">
 
 
 **Advanced Location Tracking & Device Intelligence Platform**
