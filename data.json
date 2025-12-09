@@ -1,0 +1,80 @@
+[
+  {
+    "timestamp": "2025-12-09T20:28:43.440Z",
+    "ip": "2409:40c1:1f:f899:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "device_info",
+      "info": {
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+        "platform": "Linux armv81",
+        "language": "en-GB",
+        "screen": {
+          "width": 424,
+          "height": 942
+        },
+        "time": "Wed Dec 10 2025 01:58:42 GMT+0530 (India Standard Time)",
+        "referrer": ""
+      }
+    }
+  },
+  {
+    "timestamp": "2025-12-09T20:28:44.118Z",
+    "ip": "2409:40c1:1f:f899:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "ip_simple",
+      "ip": "152.58.35.82"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T20:28:53.436Z",
+    "ip": "2409:40c1:1f:f899:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "error",
+      "message": "Location timeout"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T20:29:16.648Z",
+    "ip": "2409:40c1:1f:f899:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "device_info",
+      "info": {
+        "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+        "platform": "Linux armv81",
+        "language": "en-GB",
+        "screen": {
+          "width": 424,
+          "height": 942
+        },
+        "time": "Wed Dec 10 2025 01:59:15 GMT+0530 (India Standard Time)",
+        "referrer": ""
+      }
+    }
+  },
+  {
+    "timestamp": "2025-12-09T20:29:16.650Z",
+    "ip": "2409:40c1:1f:f899:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "ip_simple",
+      "ip": "152.58.35.82"
+    }
+  },
+  {
+    "timestamp": "2025-12-09T20:29:24.820Z",
+    "ip": "2409:40c1:1f:f899:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "gps",
+      "coords": {
+        "latitude": 23.5039574,
+        "longitude": 72.6805365,
+        "accuracy": 11.399999618530273
+      }
+    }
+  }
+]
