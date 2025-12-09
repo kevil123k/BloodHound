@@ -40,7 +40,7 @@ npm --version
 
 ### Setup
 ```bash
-git clone <repository-url>
+git clone https://github.com/kevil123k/BloodHound
 cd hound-main
 bash bloodhound.sh
 ```
