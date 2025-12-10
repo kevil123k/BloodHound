@@ -4,7 +4,7 @@
 
 **Advanced Location Tracking & Device Intelligence Platform**
 
-BloodHound is a sophisticated penetration testing tool designed for information gathering and geolocation tracking. Built By Kevil Ravat, on Node.js with a modern web interface, it captures precise GPS coordinates, device fingerprints, and network intelligence from target devices.
+BloodHound is a sophisticated penetration testing tool designed for information gathering and geolocation tracking. Built By **Kevil Ravat**, on Node.js with a modern web interface, it captures precise GPS coordinates, device fingerprints, and network intelligence from target devices.
 
 ---
 
