@@ -1,7 +1,6 @@
 # 🩸 BloodHound
 
-<img src="https://raw.githubusercontent.com/kevil123k/BloodHound/refs/heads/main/dashboard/Picsart_25-12-10_02-55-39-941.jpg?token=GHSAT0AAAAAADQ65XQC7O566GIKLQ76J7OG2JYSYVA" alt="BloodHound Terminal" width="600">
-
+ <img src="https://raw.githubusercontent.com/kevil123k/BloodHound/blob/64a2a314c196cfa32ba4cae69df5205552006fd5/dashboard/Picsart_25-12-10_02-55-39-941.jpg" alt="BloodHound" width="600">
 
 **Advanced Location Tracking & Device Intelligence Platform**
 
@@ -15,8 +14,7 @@ BloodHound is a sophisticated penetration testing tool designed for information 
 - **Device Fingerprinting** - Collects OS, browser, screen resolution, and hardware details
 - **IP Geolocation** - Fallback location tracking via IP when GPS is unavailable
 - **Real-Time Dashboard** -UI with live data visualization
-- <img src="https://raw.githubusercontent.com/kevil123k/BloodHound/refs/heads/main/dashboard/Picsart_25-12-10_02-54-31-570.jpg?token=GHSAT0AAAAAADQ65XQDBXVC3SEUKSCF5W522JYS4EQ" alt="BloodHound Dashboard" width="600">
-
+<img src="https://raw.githubusercontent.com/kevil123k/BloodHound/blob/64a2a314c196cfa32ba4cae69df5205552006fd5/dashboard/Picsart_25-12-10_02-54-31-570.jpg" alt="BloodHound" width="600">
 - **Secure Data Storage** - JSON-based logging with timestamp and session tracking
 - **HTTPS Deployment** - Automatic Cloudflare Tunnel integration for secure public access
 
