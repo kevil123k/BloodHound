@@ -1,1 +1,35 @@
-
+[
+  {
+    "timestamp": "2025-12-10T09:52:28.404Z",
+    "ip": "2409:40c1:7:3ecf:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "user_city",
+      "city": "Charada",
+      "full_address": "Charada, Mansa Taluka, Gandhinagar, Gujarat, 382810, India",
+      "timestamp": "2025-12-10T09:52:27.928Z"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T09:52:34.915Z",
+    "ip": "2409:40c1:7:3ecf:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "user_city",
+      "city": "Charada",
+      "full_address": "Charada, Mansa Taluka, Gandhinagar, Gujarat, 382810, India",
+      "timestamp": "2025-12-10T09:52:34.375Z"
+    }
+  },
+  {
+    "timestamp": "2025-12-10T09:52:41.035Z",
+    "ip": "2409:40c1:7:3ecf:8000::",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "data": {
+      "type": "user_city",
+      "city": "Charada",
+      "full_address": "Charada, Mansa Taluka, Gandhinagar, Gujarat, 382810, India",
+      "timestamp": "2025-12-10T09:52:40.486Z"
+    }
+  }
+]

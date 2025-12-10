@@ -1,0 +1,122 @@
+# ============================================
+# BloodHound Project - Git Ignore File
+# ============================================
+
+# Generated Build Files
+# --------------------------------------------
+# The public/ directory is built from template/
+public/
+
+# Session Data (Contains Captured User Data)
+# --------------------------------------------
+# All session files contain sensitive captured data
+sessions/
+*.json
+data.json
+.current_session
+
+# Runtime Configuration Files
+# --------------------------------------------
+# These are generated at runtime by bloodhound.sh
+.server_port
+cf.log
+
+# Node.js Dependencies
+# --------------------------------------------
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cloudflared Binary
+# --------------------------------------------
+# Downloaded binary for tunneling
+cloudflared
+
+# Log Files
+# --------------------------------------------
+*.log
+logs/
+*.log.*
+
+# Operating System Files
+# --------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# IDE & Editor Files
+# --------------------------------------------
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Temporary Files
+# --------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# Environment Variables
+# --------------------------------------------
+.env
+.env.local
+.env.*.local
+
+# Test Coverage
+# --------------------------------------------
+coverage/
+.nyc_output/
+
+# Optional npm cache directory
+# --------------------------------------------
+.npm
+
+# Optional eslint cache
+# --------------------------------------------
+.eslintcache
+
+# Debug Files
+# --------------------------------------------
+*.orig
+*.rej
+
+# Misc
+# --------------------------------------------
+.cache/
+dist/
+build/

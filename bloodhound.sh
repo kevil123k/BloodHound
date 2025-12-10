@@ -109,6 +109,7 @@ cf_server() {
     build_site
     
     printf "\e[1;92m[\e[0m+\e[1;92m] Starting Node.js server on port 3333...\n"
+    echo "3333" > .server_port
     PORT=3333 node server.js > /dev/null 2>&1 &
     
     sleep 2
@@ -132,6 +133,7 @@ local_server() {
     build_site
     printf "\e[1;92m[\e[0m+\e[1;92m] Starting Node.js server on Localhost:8080...\n"
     
+    echo "8080" > .server_port
     PORT=8080 node server.js > /dev/null 2>&1 & 
     sleep 2
     checkfound
